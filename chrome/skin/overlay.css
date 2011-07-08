@@ -1,0 +1,9 @@
+#procon-status {
+	cursor : pointer;
+}
+prefpane > .content-box {
+    overflow: visible;
+}
+caption {
+	font-weight: bold;
+}
