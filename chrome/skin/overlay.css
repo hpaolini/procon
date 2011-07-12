@@ -1,9 +1,16 @@
 #procon-status {
-	cursor : pointer;
+	cursor: pointer;
 }
 prefpane > .content-box {
-    overflow: visible;
+  overflow: visible;
 }
 caption {
 	font-weight: bold;
+}
+/* toolbar button */
+#procon-toolbar-button {
+  list-style-image: url("chrome://procon/skin/images/security_medium.png");
+}
+toolbar[iconsize="small"] #procon-toolbar-button {
+  list-style-image: url("chrome://procon/skin/images/security_small.png");
 }

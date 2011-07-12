@@ -4,7 +4,7 @@ locale    procon   en-US         chrome/locale/en-US/
 locale    procon   it-IT         chrome/locale/it-IT/
 
 overlay chrome://browser/content/browser.xul chrome://procon/content/ff-overlay.xul
-# style chrome://global/content/customizeToolbar.xul chrome://procon/skin/overlay.css
+style chrome://global/content/customizeToolbar.xul chrome://procon/skin/overlay.css
 
 # Module registration
 resource procon modules/
