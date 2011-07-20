@@ -30,6 +30,7 @@ var preferences =
         }
         return null;
     },
+
     setPrefByType : function(name, value)
     {
         var pref = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);

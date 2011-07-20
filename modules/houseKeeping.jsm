@@ -4,7 +4,7 @@
 
 var EXPORTED_SYMBOLS = ["houseKeeping"];
 
-let currentVersion = "3.0";
+let currentVersion = "3.2";
 
 function houseKeeping()
 {

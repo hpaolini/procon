@@ -460,8 +460,8 @@ var contentFilter = function(doc, elements)
 {
     this.i = 0;
     this.t = "";
-    this.MillisecondsPauseBetweenBatches = 3;
-    this.NodesPerBatch = 20;
+    this.pause = 3;
+    this.nodesPerBatch = 20;
     this.doc = doc;
     this.elements = elements;
 };
@@ -483,7 +483,7 @@ contentFilter.prototype.filter = function(_that)
 {
     var el, data = "", loopCount = 0;
 
-    while ((el=_that.elements.snapshotItem(_that.i++)) && (loopCount <= _that.NodesPerBatch))
+    while ((el=_that.elements.snapshotItem(_that.i++)) && (loopCount <= _that.nodesPerBatch))
     {
         var pn = el.parentNode;
 
@@ -501,7 +501,7 @@ contentFilter.prototype.filter = function(_that)
     if (el != null)
     {
         _that.i--;
-        _that.traceDoc(_that.MillisecondsPauseBetweenBatches);
+        _that.traceDoc(_that.pause);
     }
     else
     {
@@ -522,8 +522,8 @@ contentFilter.prototype.filter = function(_that)
 var profanityFilter = function(doc, elements)
 {
     this.i = 0;
-    this.MillisecondsPauseBetweenBatches = 3;
-    this.NodesPerBatch = 20;
+    this.pause = 3;
+    this.nodesPerBatch = 20;
     this.doc = doc;
     this.elements = elements;
 };
@@ -544,7 +544,7 @@ profanityFilter.prototype.filter = function(_that)
 {
     var el, data = "", loopCount = 0;
 
-    while ((el=_that.elements.snapshotItem(_that.i++)) && (loopCount <= _that.NodesPerBatch))
+    while ((el=_that.elements.snapshotItem(_that.i++)) && (loopCount <= _that.nodesPerBatch))
     {
         var pn = el.parentNode;
         if (pn === null || pn.nodeType === 9 || pn.nodeType === 11
@@ -553,8 +553,8 @@ profanityFilter.prototype.filter = function(_that)
             data = el.data;
             if (data !== null)
             {
-                // FIX for bug, but I don't like it since I still don't
-                // understand _why_ replace() causes the cursor to move
+                // FIX for bug, but I don't like it since I'm still
+                // not sure why replace() causes the cursor to move
                 // BUG: http://proconlatte.com/bugs/view.php?id=6
                 var match = data.search(profanitylist.words);
                 if (match !== -1)
@@ -568,7 +568,7 @@ profanityFilter.prototype.filter = function(_that)
     if (el != null)
     {
         _that.i--;
-        _that.traceDoc(_that.MillisecondsPauseBetweenBatches);
+        _that.traceDoc(_that.pause);
     }
 };
 

@@ -4,8 +4,6 @@
 
 var EXPORTED_SYMBOLS = ["subscriptions"];
 
-let currentVersion = "3.0";
-
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 
@@ -16,12 +14,11 @@ let nativeJSON = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
 
 var subscriptions = function()
 {
+    this.jsObject =
+    {
+    };
 };
 
-subscriptions.prototype.jsObject =
-{
-};
-  
 subscriptions.prototype.getFromURL = function(url)
 {
     var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Ci.nsIXMLHttpRequest);
