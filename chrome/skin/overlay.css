@@ -1,16 +1,25 @@
-#procon-status {
-	cursor: pointer;
+#procon-status
+{
+    cursor: pointer;
 }
-prefpane > .content-box {
-  overflow: visible;
+
+prefpane > .content-box
+{
+    overflow: visible;
 }
-caption {
-	font-weight: bold;
+
+caption
+{
+    font-weight: bold;
 }
+
 /* toolbar button */
-#procon-toolbar-button {
-  list-style-image: url("chrome://procon/skin/images/security_medium.png");
+#procon-toolbar-button
+{
+    list-style-image: url("chrome://procon/skin/images/security_medium.png");
 }
-toolbar[iconsize="small"] #procon-toolbar-button {
-  list-style-image: url("chrome://procon/skin/images/security_small.png");
+
+toolbar[iconsize="small"] #procon-toolbar-button
+{
+    list-style-image: url("chrome://procon/skin/images/security_small.png");
 }
