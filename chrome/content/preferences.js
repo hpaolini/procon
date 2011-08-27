@@ -2,8 +2,8 @@
   Copyright (c) 2011 Hunter Paolini.  All Rights Reserved.
   -----------------------------------------------------*/
 
-const Cc = Components.classes;
-const Ci = Components.interfaces;
+//const Cc = Components.classes;
+//const Ci = Components.interfaces;
 
 var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
 var Prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
@@ -12,7 +12,7 @@ Prefs = Prefs.getBranch("extensions.procon.");
 const prefwindow =
 {
     stringsBundle : null,
-    load: function()
+    load : function()
     {
         if (!common.authenticateUser())
             window.close();
@@ -48,8 +48,7 @@ const prefwindow =
         {
             common.updateButtonElements();
             subscriptionsPane.saveSubscriptions();
-            Components.utils.import("resource://procon/filter.jsm");
-            publicObj.updatePrefs();
+            Components.utils.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
         }
         catch(e)
         {
@@ -141,9 +140,10 @@ const io =
         "subscriptions\\.urls",
         "whitelist\\.sites"
     ],
+
     "export": function()
     {
-        Components.utils.import("resource://procon/preferences.jsm");
+        var preferences = Components.utils.import("resource://procon/preferences.jsm", null).preferences;
         var count =
         {
             value : 0
@@ -223,7 +223,7 @@ const io =
             return;
         }
 
-        Components.utils.import("resource://procon/preferences.jsm");
+        var preferences = Components.utils.import("resource://procon/preferences.jsm", null).preferences;
         var listRegex = new RegExp("^\\b(?:profanitylist\\.words|blacklist\\.(?:sites|words)|whitelist\\.sites|subscriptions\\.urls)\\b", "i");
         var allowedPrefsRegex = new RegExp("^\\b(?:" + this.allowedPrefs.join("|") + ")\\b", "i");
 
@@ -277,8 +277,7 @@ const io =
         }
 
         // update new subscriptions
-        Components.utils.import("resource://procon/subscriptions.jsm");
-        (new subscriptions()).update();
+        (new (Components.utils.import("resource://procon/subscriptions.jsm", null).subscriptions)).update();
 
         prefwindow.reload(document.getElementById("import-menuitem").label, prefwindow.stringsBundle.getString('importSuccess'));
 
@@ -509,8 +508,7 @@ const subscriptionsPane =
 
     load : function()
     {
-        Components.utils.import("resource://procon/subscriptions.jsm");
-        this.subscriptionsObj = new subscriptions();
+        this.subscriptionsObj = (new (Components.utils.import("resource://procon/subscriptions.jsm", null).subscriptions));
         this.getUrls();
         this.updateTimeDescription();
     },
@@ -624,8 +622,7 @@ const subscriptionsPane =
         {
             if (Prefs.getBoolPref("subscriptions.enabled") == true)
             {
-                Components.utils.import("resource://procon/subscriptions.jsm");
-                this.subscriptionsObj = new subscriptions();
+                this.subscriptionsObj = (new (Components.utils.import("resource://procon/subscriptions.jsm", null).subscriptions));
                 this.subscriptionsObj.update();
             }
             return;

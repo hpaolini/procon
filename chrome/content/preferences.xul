@@ -41,6 +41,7 @@
         <stringbundle id="procon-strings" src="chrome://procon/locale/overlay.properties"/>
     </stringbundleset>
 
+    <script type="application/javascript" src="chrome://procon/content/third_party/md5.js"/>
     <script type="application/javascript" src="chrome://procon/content/common.js"/>
     <script type="application/javascript" src="chrome://procon/content/preferences.js"/>
 </prefwindow>

@@ -10,12 +10,9 @@ procon.onFirefoxLoad = function(event)
     // clean unecessary prefs from previous versions
     if (Prefs.getCharPref("currentVersion") < "3.0")
     {
-        Components.utils.import("resource://procon/houseKeeping.jsm");
-        houseKeeping();
-        common.updateButtonElements();
+        Cu.import("resource://procon/houseKeeping.jsm", null).houseKeeping();
+        Cu.import("chrome://procon/content/common.js", null).common.updateButtonElements();
     }
-
-    Components.utils.import("resource://procon/filter.jsm");
 
     // update subscriptions every 72 hours
     if (Prefs.getBoolPref("subscriptions.enabled"))
@@ -26,14 +23,12 @@ procon.onFirefoxLoad = function(event)
 
         if (((time - lastUpdateTime) / 3600) > 72)
         {
-            Components.utils.import("resource://procon/subscriptions.jsm");
-            var subscriptionsObj = new subscriptions();
-            subscriptionsObj.update();
-            publicObj.updatePrefs();
+            (new (Cu.import("resource://procon/subscriptions.jsm", null).subscriptions)).update();
+            Cu.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
         }
     }
 
-    document.addEventListener("DOMContentLoaded", contentListener, false);
+    document.addEventListener("DOMContentLoaded", procon.contentListener, false);
     document.addEventListener("DOMContentLoaded", procon.configProtectionListener, false);
 
     if (Prefs.prefHasUserValue("general.password"))
@@ -41,19 +36,20 @@ procon.onFirefoxLoad = function(event)
 
     try
     {
-        Components.utils.import("resource://gre/modules/AddonManager.jsm");
+        Cu.import("resource://gre/modules/AddonManager.jsm");
         AddonManager.addAddonListener(procon.addonProtectionListener);
     }
-    catch (ex)
+    catch(ex)
     {
     }
 };
 
 procon.onFirefoxUnload = function(event)
 {
-    Components.utils.import("resource://procon/filter.jsm");
-    document.removeEventListener("DOMContentLoaded", contentListener, false);
+    document.removeEventListener("DOMContentLoaded", procon.contentListener, false);
 };
+
+procon.contentListener = Cu.import("resource://procon/filter.jsm", null).contentListener;
 
 procon.configProtectionListener = function(event)
 {
@@ -63,7 +59,7 @@ procon.configProtectionListener = function(event)
         return;
 
     loc = loc.href.toLowerCase();
-    if (((loc == "about:config" || loc == "chrome://global/content/config.xul") && !common.authenticateUser()) || loc.indexOf("://procon/") != - 1)
+    if (((loc == "about:config" || loc == "chrome://global/content/config.xul") && !Cu.import("chrome://procon/content/common.js", null).common.authenticateUser()) || loc.indexOf("://procon/") != - 1)
         event.target.location = "about:blank";
 };
 
@@ -71,13 +67,13 @@ procon.addonProtectionListener =
 {
     onUninstalling : function(addon)
     {
-        if (addon.id == "{9D6218B8-03C7-4b91-AA43-680B305DD35C}" && !common.authenticateUser())
+        if (addon.id == "{9D6218B8-03C7-4b91-AA43-680B305DD35C}" && !Cu.import("chrome://procon/content/common.js", null).common.authenticateUser())
             AddonManager.getAddonByID("{9D6218B8-03C7-4b91-AA43-680B305DD35C}", function(addon) { addon.cancelUninstall(); });
     },
 
     onDisabling : function(addon)
     {
-        if (addon.id == "{9D6218B8-03C7-4b91-AA43-680B305DD35C}" && !common.authenticateUser())
+        if (addon.id == "{9D6218B8-03C7-4b91-AA43-680B305DD35C}" && !Cu.import("chrome://procon/content/common.js", null).common.authenticateUser())
             AddonManager.getAddonByID("{9D6218B8-03C7-4b91-AA43-680B305DD35C}", function(addon) { addon.userDisabled = false; });
     }
 }

@@ -2,15 +2,17 @@
   Copyright (c) 2011 Hunter Paolini.  All Rights Reserved.
   -----------------------------------------------------*/
 
-var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"].getService(Components.interfaces.mozIJSSubScriptLoader);
-loader.loadSubScript("chrome://procon/content/third_party/md5.js", common);
+let Cc = Components.classes;
+let Ci = Components.interfaces;
+let Cu = Components.utils;
 
 const common =
 {
     updateButtonElements : function()
     {
-        var Prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
+        let Prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
         Prefs = Prefs.getBranch("extensions.procon.");
+
         var wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
         var browserWindow = wm.getMostRecentWindow("navigator:browser");
 
@@ -29,9 +31,10 @@ const common =
 
     authenticateUser : function()
     {
-        var Prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
+        let Prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
+        Prefs = Prefs.getBranch("extensions.procon.");
 
-        if (Prefs.prefHasUserValue("extensions.procon.general.password"))
+        if (Prefs.prefHasUserValue("general.password"))
         {
             var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
             var strings = document.getElementById("procon-strings");
@@ -54,7 +57,7 @@ const common =
             if (!password_result)
                 return false;
 
-            if (hex_md5(password.value) != Prefs.getCharPref("extensions.procon.general.password"))
+            if (Cu.import("chrome://procon/content/third_party/md5.js", null).hex_md5(password.value) != Prefs.getCharPref("general.password"))
             {
                 prompts.alert(null,
                     strings.getString("passwordPromptTitle"),

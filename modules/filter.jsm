@@ -16,7 +16,6 @@ const nsIDOMXPathResultIface = Ci.nsIDOMXPathResult;
 const nsIDOMHTMLStyleElementIface = Ci.nsIDOMHTMLStyleElement;
 const nsIDOMHTMLScriptElementIface = Ci.nsIDOMHTMLScriptElement;
 const nsIWebNavigationIface = Ci.nsIWebNavigation;
-const nativeJSON = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
 
 /**
  * Preference branch
@@ -72,9 +71,6 @@ const LIST_TYPE =
 
 /**
  * Prepare strings containing unicode characters
- * @param {String} str text to encode
- * @param {Number} type type of list to format
- * @return {String} list
  */
 function formatList(str, type)
 {
@@ -108,7 +104,6 @@ function formatList(str, type)
 
 /**
  * Blacklist preferences object
- * @constructor
  */
 var blacklistObj = function()
 {
@@ -121,8 +116,8 @@ var blacklistObj = function()
         let subscriptions_sitesObj = Prefs.getComplexValue("subscriptions.blacklist.sites", Ci.nsISupportsString).data;
         let subscriptions_wordsObj = Prefs.getComplexValue("subscriptions.blacklist.words", Ci.nsISupportsString).data;
 
-        subscriptions_sitesObj = nativeJSON.decode(subscriptions_sitesObj);
-        subscriptions_wordsObj = nativeJSON.decode(subscriptions_wordsObj);
+        subscriptions_sitesObj = JSON.parse(subscriptions_sitesObj);
+        subscriptions_wordsObj = JSON.parse(subscriptions_wordsObj);
 
         for (var i in subscriptions_sitesObj)
             subscriptions_sites.push(subscriptions_sitesObj[i]);
@@ -163,7 +158,6 @@ var blacklistObj = function()
 
 /**
  * Whitelist preferences object
- * @constructor
  */
 var whitelistObj = function()
 {
@@ -173,7 +167,7 @@ var whitelistObj = function()
     if (Prefs.getBoolPref("subscriptions.enabled"))
     {
         let subscriptions_sitesObj = Prefs.getComplexValue("subscriptions.whitelist.sites", Ci.nsISupportsString).data;
-        subscriptions_sitesObj = nativeJSON.decode(subscriptions_sitesObj);
+        subscriptions_sitesObj = JSON.parse(subscriptions_sitesObj);
 
         for (var i in subscriptions_sitesObj)
             subscriptions_sites.push(subscriptions_sitesObj[i]);
@@ -209,7 +203,6 @@ whitelistObj.prototype.session =
 
 /**
  * Profanity list preferences object
- * @constructor
  */
 var profanitylistObj = function()
 {
@@ -219,7 +212,7 @@ var profanitylistObj = function()
     if (Prefs.getBoolPref("subscriptions.enabled"))
     {
         let subscriptions_wordsObj = Prefs.getComplexValue("subscriptions.profanitylist.words", Ci.nsISupportsString).data;
-        subscriptions_wordsObj = nativeJSON.decode(subscriptions_wordsObj);
+        subscriptions_wordsObj = JSON.parse(subscriptions_wordsObj);
 
         for (var i in subscriptions_wordsObj)
             subscriptions_words.push(subscriptions_wordsObj[i]);
@@ -247,7 +240,6 @@ let cache         = new cacheObj();
 
 /**
  * Public functions
- * @class
  */
 var publicObj =
 {
@@ -277,7 +269,6 @@ var publicObj =
 
 /**
  * Check whether the whitelist contains the URI parameters
- * @param {
  */
 function inWhitelist(host, spec)
 {

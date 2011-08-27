@@ -6,10 +6,8 @@ var procon =
 {
     onLoad : function()
     {
-        // load the common object within a limited scope
-        var loader = Cc["@mozilla.org/moz/jssubscript-loader;1"].getService(Ci.mozIJSSubScriptLoader);
-        loader.loadSubScript("chrome://procon/content/common.js", this);
-        common.updateButtonElements();
+        procon.common = Cu.import("chrome://procon/content/common.js", null).common;
+        procon.common.updateButtonElements();
     },
 
     onMenuItemCommand : function(e, args)
@@ -33,7 +31,7 @@ var procon =
 
     openAbout : function(e)
     {
-        Components.utils.import("resource://gre/modules/AddonManager.jsm");
+        Cu.import("resource://gre/modules/AddonManager.jsm");
         AddonManager.getAddonByID("{9D6218B8-03C7-4b91-AA43-680B305DD35C}",
             function(addon)
             {
@@ -46,9 +44,7 @@ var procon =
         var domainSessionMenuItem = document.getElementById("procon-notification-popup-domain-session");
         var domainWhitelistMenuItem = document.getElementById("procon-notification-popup-domain-whitelist");
 
-        Components.utils.import("resource://procon/filter.jsm");
-        var URI = publicObj.getBlockedURI();
-
+        var URI = Cu.import("resource://procon/filter.jsm", null).publicObj.getBlockedURI();
         var stringBundle = document.getElementById("procon-strings");
 
         domainSessionMenuItem.setAttribute("label", stringBundle.getFormattedString("domainAllowTemp", [URI.host]));
@@ -57,13 +53,13 @@ var procon =
 
     allowPage : function(e)
     {
-        if (!common.authenticateUser())
+        if (!procon.common.authenticateUser())
             return;
 
         try
         {
             //var URI = window.content.document.baseURIObject;alert(URI.spec);
-            Components.utils.import("resource://procon/filter.jsm");
+            var publicObj = Cu.import("resource://procon/filter.jsm", null).publicObj;
             var URI = publicObj.getBlockedURI();
             publicObj.setWhitelistSessionPage(URI.spec);
             window.content.location = URI.spec;
@@ -76,12 +72,12 @@ var procon =
 
     allowDomain : function(e)
     {
-        if (!common.authenticateUser())
+        if (!procon.common.authenticateUser())
             return;
 
         try
         {
-            Components.utils.import("resource://procon/filter.jsm");
+            var publicObj = Cu.import("resource://procon/filter.jsm", null).publicObj;
             var URI = publicObj.getBlockedURI();
             publicObj.setWhitelistSessionDomain(URI.host);
             window.content.location = URI.spec;
@@ -94,7 +90,7 @@ var procon =
 
     addBlacklistSite : function(el)
     {
-        if (!common.authenticateUser())
+        if (!procon.common.authenticateUser())
             return;
 
         var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
@@ -120,8 +116,7 @@ var procon =
 
         try
         {
-            Components.utils.import("resource://procon/filter.jsm");
-            publicObj.updatePrefs();
+            Cu.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
         }
         catch(e)
         {
@@ -131,7 +126,7 @@ var procon =
 
     addBlacklistWord : function(el)
     {
-        if (!common.authenticateUser())
+        if (!procon.common.authenticateUser())
             return;
 
         var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
@@ -158,8 +153,7 @@ var procon =
 
         try
         {
-            Components.utils.import("resource://procon/filter.jsm");
-            publicObj.updatePrefs();
+            Cu.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
         }
         catch(e)
         {
@@ -169,7 +163,7 @@ var procon =
 
     addWhitelistSite : function(el)
     {
-        if (!common.authenticateUser())
+        if (!procon.common.authenticateUser())
             return;
 
         var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
@@ -195,8 +189,7 @@ var procon =
 
         try
         {
-            Components.utils.import("resource://procon/filter.jsm");
-            publicObj.updatePrefs();
+            Cu.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
         }
         catch(e)
         {
@@ -206,7 +199,7 @@ var procon =
 
     addProfanitylistWord : function(el)
     {
-        if (!common.authenticateUser())
+        if (!procon.common.authenticateUser())
             return;
 
         var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
@@ -232,8 +225,7 @@ var procon =
 
         try
         {
-            Components.utils.import("resource://procon/filter.jsm");
-            publicObj.updatePrefs();
+            Cu.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
         }
         catch(e)
         {

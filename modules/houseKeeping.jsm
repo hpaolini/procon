@@ -8,7 +8,7 @@ let currentVersion = "3.2";
 
 function houseKeeping()
 {
-    Components.utils.import("resource://procon/preferences.jsm");
+    let preferences = Components.utils.import("resource://procon/preferences.jsm", null).preferences;
     let Prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService);
     let Prefs_old = Prefs.getBranch("procon.");
     Prefs = Prefs.getBranch("extensions.procon.");
@@ -90,6 +90,5 @@ function houseKeeping()
 
     Prefs.setCharPref("currentVersion", currentVersion);
 
-    Components.utils.import("resource://procon/filter.jsm");
-    publicObj.updatePrefs();
+    Components.utils.import("resource://procon/filter.jsm", null).publicObj.updatePrefs();
 }

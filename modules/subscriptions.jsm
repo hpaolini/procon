@@ -10,8 +10,6 @@ const Ci = Components.interfaces;
 let Prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
 Prefs = Prefs.getBranch("extensions.procon.subscriptions.");
 
-let nativeJSON = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
-
 var subscriptions = function()
 {
     this.jsObject =
@@ -134,17 +132,17 @@ subscriptions.prototype.save = function(urls)
 
     try
     {
-        blacklist_sites = nativeJSON.decode(blacklist_sites);
-        blacklist_words = nativeJSON.decode(blacklist_words);
-        whitelist_sites = nativeJSON.decode(whitelist_sites);
-        profanitylist_words = nativeJSON.decode(profanitylist_words);
+        blacklist_sites = JSON.parse(blacklist_sites);
+        blacklist_words = JSON.parse(blacklist_words);
+        whitelist_sites = JSON.parse(whitelist_sites);
+        profanitylist_words = JSON.parse(profanitylist_words);
     }
     catch (e)
     {
         dump("Error saving subscriptions: " + e);
         return;
     }
-    
+ 
     for (var i in this.jsObject)
     {
         let obj = this.jsObject[i];     
@@ -240,10 +238,10 @@ subscriptions.prototype.save = function(urls)
     let whitelist_sites_complex = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
     let profanity_words_complex = Cc["@mozilla.org/supports-string;1"].createInstance(Ci.nsISupportsString);
     
-    blacklist_sites_complex.data = nativeJSON.encode(blacklist_sites);
-    blacklist_words_complex.data = nativeJSON.encode(blacklist_words);
-    whitelist_sites_complex.data = nativeJSON.encode(whitelist_sites);
-    profanity_words_complex.data = nativeJSON.encode(profanitylist_words);
+    blacklist_sites_complex.data = JSON.stringify(blacklist_sites);
+    blacklist_words_complex.data = JSON.stringify(blacklist_words);
+    whitelist_sites_complex.data = JSON.stringify(whitelist_sites);
+    profanity_words_complex.data = JSON.stringify(profanitylist_words);
     
     Prefs.setComplexValue("blacklist.sites", Ci.nsISupportsString, blacklist_sites_complex);
     Prefs.setComplexValue("blacklist.words", Ci.nsISupportsString, blacklist_words_complex);
@@ -255,7 +253,7 @@ subscriptions.prototype.update = function()
 {
     try
     {
-        let urls = nativeJSON.decode(Prefs.getComplexValue("urls", Ci.nsISupportsString).data);
+        let urls = JSON.parse(Prefs.getComplexValue("urls", Ci.nsISupportsString).data);
 
         for (var i = 0, len = urls.length; i < len; i++)
             this.getFromURL(decodeURIComponent(urls[i]));

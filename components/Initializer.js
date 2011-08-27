@@ -3,7 +3,6 @@ const Ci = Components.interfaces;
 const Cu = Components.utils;
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-Cu.import("resource://procon/filter.jsm");
 
 const nsIDOMWindowIface = Ci.nsIDOMWindow;
 const nsIHttpChannelIface = Ci.nsIHttpChannel;
@@ -16,6 +15,7 @@ const nsIChannelIface = Ci.nsIChannel;
  */
 function ComponentCollectorService()
 {
+    Cu.import("resource://procon/filter.jsm");
 }
 
 ComponentCollectorService.prototype =
