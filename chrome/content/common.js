@@ -37,7 +37,11 @@ const common =
         if (Prefs.prefHasUserValue("general.password"))
         {
             var prompts = Cc["@mozilla.org/embedcomp/prompt-service;1"].getService(Ci.nsIPromptService);
-            var strings = document.getElementById("procon-strings");
+
+            var wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+            var browserWindow = wm.getMostRecentWindow("navigator:browser");
+            var strings = browserWindow.document.getElementById("procon-strings");
+
             var password =
             {
                 value : ""
