@@ -68,7 +68,14 @@ procon.addonProtectionListener =
     onUninstalling : function(addon)
     {
         if (addon.id == "{9D6218B8-03C7-4b91-AA43-680B305DD35C}" && !Cu.import("chrome://procon/content/common.js", null).common.authenticateUser())
+        {
             AddonManager.getAddonByID("{9D6218B8-03C7-4b91-AA43-680B305DD35C}", function(addon) { addon.cancelUninstall(); });
+        }
+        else
+        {
+            var Prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService);
+            Prefs.clearUserPref("nglayout.initialpaint.delay");
+        }
     },
 
     onDisabling : function(addon)

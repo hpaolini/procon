@@ -4,7 +4,7 @@
   <em:id>{9D6218B8-03C7-4b91-AA43-680B305DD35C}</em:id>
   <em:type>2</em:type>
   <em:name>Procon Latte Content Filter</em:name>
-  <em:version>3.2</em:version>
+  <em:version>3.3</em:version>
   <em:creator>Hunter Paolini</em:creator>
   <em:homepageURL>http://proconlatte.com</em:homepageURL>
   <em:contributor></em:contributor>
@@ -14,7 +14,7 @@
     <Description>
       <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
       <em:minVersion>4.0</em:minVersion>
-      <em:maxVersion>9.*</em:maxVersion>
+      <em:maxVersion>9.0a1</em:maxVersion>
     </Description>
   </em:targetApplication>
 </Description>

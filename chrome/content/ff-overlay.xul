@@ -21,7 +21,6 @@
             id="procon-menu-button"
             class="menuitem-iconic"
             label="&procon.label;&#8230;"
-            insertafter="javascriptConsole,devToolsSeparator"
             oncommand="procon.onMenuItemCommand(event, null);"/>
     </menupopup>
 

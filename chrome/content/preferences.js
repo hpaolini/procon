@@ -148,7 +148,7 @@ const io =
         {
             value : 0
         };
-        var str = "[ProCon Latte 3.0]\n# Updated: " + new Date() + "\n\n# preferences\n", endStr = "";
+        var str = "[ProCon Latte 3.3]\n# Updated: " + new Date() + "\n\n# preferences\n", endStr = "";
         var children = Prefs.getChildList("", count);
         var allowedPrefsRegex = new RegExp("^\\b(?:" + this.allowedPrefs.join("|") + ")\\b", "i");
         for (var i = 0; i < count.value; ++i)
@@ -224,7 +224,7 @@ const io =
         }
 
         var preferences = Components.utils.import("resource://procon/preferences.jsm", null).preferences;
-        var listRegex = new RegExp("^\\b(?:profanitylist\\.words|blacklist\\.(?:sites|words)|whitelist\\.sites|subscriptions\\.urls)\\b", "i");
+        var listRegex = new RegExp("^\\b(?:profanitylist\\.words|blacklist\\.(?:sites|words)(?!\\.enabled)|whitelist\\.sites|subscriptions\\.urls)\\b", "i");
         var allowedPrefsRegex = new RegExp("^\\b(?:" + this.allowedPrefs.join("|") + ")\\b", "i");
 
         for (var i = 1, len = arr.length; i < len; i++)

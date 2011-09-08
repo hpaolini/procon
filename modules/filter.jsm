@@ -178,12 +178,22 @@ var whitelistObj = function()
     }
  
     let sites = Prefs.getComplexValue("whitelist.sites", Ci.nsISupportsString).data;
- 
-    // append redirect address to whitelist once to save time...
-    this.sites = (Prefs.getBoolPref("blacklist.advanced.redirect"))
-        ? new RegExp(formatList(Prefs.getComplexValue("blacklist.advanced.redirectURL", Ci.nsISupportsString).data
-            + "\n" + sites, LIST_TYPE.SITES) + subscriptions_sites, "gi")
-        : new RegExp(formatList(sites, LIST_TYPE.SITES) + subscriptions_sites, "gi");
+
+    if (this.enabled && Prefs.getBoolPref("blacklist.advanced.redirect"))
+    {
+        this.sites = new RegExp(formatList(Prefs.getComplexValue("blacklist.advanced.redirectURL", Ci.nsISupportsString).data
+                        + "\n" + sites, LIST_TYPE.SITES) + subscriptions_sites, "gi");
+    }
+    else if (Prefs.getBoolPref("blacklist.advanced.redirect"))
+    {
+        // BUGFIX: http://proconlatte.com/bugs/view.php?id=7
+        this.sites = new RegExp(formatList(Prefs.getComplexValue("blacklist.advanced.redirectURL", Ci.nsISupportsString).data, LIST_TYPE.SITES), "gi");
+        this.enabled = true;
+    }
+    else
+    {
+        this.sites = new RegExp(formatList(sites, LIST_TYPE.SITES) + subscriptions_sites, "gi");
+    }
 
     delete sites;
     delete subscriptions_sites;
