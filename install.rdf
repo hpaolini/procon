@@ -7,7 +7,7 @@
   <em:version>3.3</em:version>
   <em:creator>Hunter Paolini</em:creator>
   <em:homepageURL>http://proconlatte.com</em:homepageURL>
-  <em:contributor></em:contributor>
+  <em:contributor>Javier Hernández</em:contributor>
   <em:iconURL>chrome://procon/skin/images/security.png</em:iconURL>
   <em:optionsURL>chrome://procon/content/preferences.xul</em:optionsURL>
   <em:targetApplication>
