@@ -2,6 +2,13 @@ content   procon                 chrome/content/
 skin      procon   classic/1.0   chrome/skin/
 locale    procon   en-US         chrome/locale/en-US/
 locale    procon   it-IT         chrome/locale/it-IT/
+locale    procon   ru-RU         chrome/locale/ru-RU/
+locale    procon   es-ES         chrome/locale/es-ES/
+locale    procon   zh-CN         chrome/locale/zh-CN/
+locale    procon   ja-JP         chrome/locale/ja-JP/
+locale    procon   he            chrome/locale/he/
+locale    procon   nl            chrome/locale/nl/
+locale    procon   sv-SE         chrome/locale/sv-SE/
 
 overlay chrome://browser/content/browser.xul chrome://procon/content/ff-overlay.xul
 style chrome://global/content/customizeToolbar.xul chrome://procon/skin/overlay.css

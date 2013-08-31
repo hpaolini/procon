@@ -106,7 +106,7 @@ const prefwindow =
 
     openDonationPage : function()
     {
-        window.opener.open("http://proconlatte.com/donate/",
+        window.opener.open("http://hpaolini.com/donate/",
             "_new",
             "");
     }

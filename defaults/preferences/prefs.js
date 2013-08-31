@@ -20,7 +20,7 @@ pref("extensions.procon.profanitylist.words", "Pussy\nJackass\nGoddamn\nBitchy\n
 pref("extensions.procon.misc.showMenuButton", true);
 pref("extensions.procon.misc.showStatusButton", true);
 pref("extensions.procon.subscriptions.enabled", false);
-pref("extensions.procon.subscriptions.urls", '["http%3A%2F%2Fproconlatte.com%2Fsubscriptions%2Fprofanity_en-US.txt"]');
+pref("extensions.procon.subscriptions.urls", '["http%3A%2F%2Fhpaolini.com%2Fsubscriptions%2Fprofanity_en-US.txt"]');
 pref("extensions.procon.subscriptions.blacklist.words", "{}");
 pref("extensions.procon.subscriptions.blacklist.sites", "{}");
 pref("extensions.procon.subscriptions.whitelist.sites", "{}");
