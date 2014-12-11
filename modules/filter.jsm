@@ -1,11 +1,10 @@
 /*-----------------------------------------------------
-  Copyright (c) 2011 Hunter Paolini.  All Rights Reserved.
+  Copyright (c) 2014 Hunter Paolini.  All Rights Reserved.
   -----------------------------------------------------*/
 
 /**
  * @fileOverview Code to examine output of Web documents
  */
-
 var EXPORTED_SYMBOLS = ["contentListener", "scanURL", "publicObj", "formatList", "LIST_TYPE"];
 
 const Cc = Components.classes;
@@ -16,6 +15,7 @@ const nsIDOMXPathResultIface = Ci.nsIDOMXPathResult;
 const nsIDOMHTMLStyleElementIface = Ci.nsIDOMHTMLStyleElement;
 const nsIDOMHTMLScriptElementIface = Ci.nsIDOMHTMLScriptElement;
 const nsIWebNavigationIface = Ci.nsIWebNavigation;
+//let console = (Components.utils.import("resource://gre/modules/devtools/Console.jsm", {})).console;
 
 /**
  * Preference branch
@@ -332,8 +332,8 @@ function scanURL(aSubject, uri)
 
         if (blacklist.advanced_limitNetAccess)
         {
-            aSubject.cancel(Components.results.NS_ERROR_FAILURE); // Cancel the request
-            let webNav = aSubject.notificationCallbacks.getInterface(nsIWebNavigationIface);
+            aSubject.cancel(Components.results.NS_BINDING_ABORTED); // Cancel the request
+            let webNav = getWindowForRequest(aSubject).top.document;
             let msg = (blacklist.advanced_showDetails)
                 ? stringBundle.GetStringFromName("internetBlockEnabled")
                 : "";
@@ -356,8 +356,8 @@ function scanURL(aSubject, uri)
 
         if (match !== -1)
         {
-            aSubject.cancel(Components.results.NS_ERROR_FAILURE); // Cancel the request
-            let webNav = aSubject.notificationCallbacks.getInterface(nsIWebNavigationIface);
+            aSubject.cancel(Components.results.NS_BINDING_ABORTED); // Cancel the request
+            let webNav = getWindowForRequest(aSubject).top.document;
             let msg = (blacklist.advanced_showDetails)
                 ? stringBundle.GetStringFromName("addressMatched") + " \"" + URI_spec.substr(match,20) + "\u2026\""
                 : "";
@@ -365,6 +365,38 @@ function scanURL(aSubject, uri)
             return;
         }
     }
+}
+
+/**
+ * Get the window document from blocked request
+ */
+function getWindowForRequest(aSubject)
+{
+    let request = aSubject.QueryInterface(Ci.nsIHttpChannel);
+    if (request instanceof Ci.nsIRequest)
+    {
+        try
+        {
+            if (request.notificationCallbacks)
+            {
+                return request.notificationCallbacks
+                .getInterface(Ci.nsILoadContext)
+                .associatedWindow;
+            }
+        }
+        catch(e){}
+        try
+        {
+            if (request.loadGroup && request.loadGroup.notificationCallbacks)
+            {
+                return request.loadGroup.notificationCallbacks
+                .getInterface(Ci.nsILoadContext)
+                .associatedWindow;
+            }
+        }
+        catch(e){}
+    }
+    return null;
 }
 
 /**
