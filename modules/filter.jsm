@@ -1,5 +1,5 @@
 /*-----------------------------------------------------
-  Copyright (c) 2014 Hunter Paolini.  All Rights Reserved.
+  Copyright (c) 2015 Hunter Paolini.  All Rights Reserved.
   -----------------------------------------------------*/
 
 /**
@@ -15,7 +15,7 @@ const nsIDOMXPathResultIface = Ci.nsIDOMXPathResult;
 const nsIDOMHTMLStyleElementIface = Ci.nsIDOMHTMLStyleElement;
 const nsIDOMHTMLScriptElementIface = Ci.nsIDOMHTMLScriptElement;
 const nsIWebNavigationIface = Ci.nsIWebNavigation;
-//let console = (Components.utils.import("resource://gre/modules/devtools/Console.jsm", {})).console;
+let console = (Components.utils.import("resource://gre/modules/devtools/Console.jsm", {})).console;
 
 /**
  * Preference branch
@@ -141,11 +141,6 @@ var blacklistObj = function()
     this.sites_enabled = Prefs.getBoolPref("blacklist.sites.enabled");
     this.words_enabled = Prefs.getBoolPref("blacklist.words.enabled");
 
-    delete sites;
-    delete words;
-    delete subscriptions_sites;
-    delete subscriptions_words;
-
     //advanced preferences
     this.advanced_limitNetAccess   = Prefs.getBoolPref("blacklist.advanced.limitNetAccess");
     this.advanced_showDetails      = Prefs.getBoolPref("blacklist.advanced.showDetails");
@@ -194,9 +189,6 @@ var whitelistObj = function()
     {
         this.sites = new RegExp(formatList(sites, LIST_TYPE.SITES) + subscriptions_sites, "gi");
     }
-
-    delete sites;
-    delete subscriptions_sites;
 };
 
 // establish session access for blocked sites 
@@ -235,9 +227,6 @@ var profanitylistObj = function()
     let words = Prefs.getComplexValue("profanitylist.words", Ci.nsISupportsString).data;
 
     this.words = new RegExp(formatList(words, LIST_TYPE.WORDS) + subscriptions_words, "gi");
-
-    delete words;
-    delete subscriptions_words;
 
     // regex might strip the first space sometimes
     this.placeholder = " " + Prefs.getComplexValue("profanitylist.placeholder", Ci.nsISupportsString).data;
@@ -458,31 +447,40 @@ function contentListener(event)
         pf.traceDoc(0);
     }
 
+    let win = doc.defaultView;
+    let MutationObserver = win.MutationObserver;
+    //console.log(MutationObserver);
     let timer = Cc["@mozilla.org/timer;1"].createInstance(nsITimerIface);
     timer.initWithCallback(
         function()
         {
-            body.addEventListener("DOMNodeInserted", 
-            function(event)
-            {
-                let elements = doc.evaluate('descendant-or-self::text()[normalize-space()]',
-                    event.target,
-                    null,
-                    nsIDOMXPathResultIface.ORDERED_NODE_SNAPSHOT_TYPE,
-                    null);
-
-                if (scanContentAllowed)
+            var observer = new MutationObserver(
+                function(mutations)
                 {
-                    let cf = new contentFilter(doc, elements);
-                    cf.traceDoc(0);
-                }
+                    mutations.forEach(
+                        function(mutation)
+                        {
+                            let elements = doc.evaluate('descendant-or-self::text()[normalize-space()]',
+                                mutation.target,
+                                null,
+                                nsIDOMXPathResultIface.ORDERED_NODE_SNAPSHOT_TYPE,
+                                null);
 
-                if (profanitylist.enabled)
-                {
-                    let pf = new profanityFilter(doc, elements);
-                    pf.traceDoc(0);
+                            if (scanContentAllowed)
+                            {
+                                let cf = new contentFilter(doc, elements);
+                                cf.traceDoc(0);
+                            }
+
+                            if (profanitylist.enabled)
+                            {
+                                let pf = new profanityFilter(doc, elements);
+                                pf.traceDoc(0);
+                            }
+                        });
                 }
-            }, false);
+            );
+            observer.observe(body,{childList:true, subtree:true});
         }, 100, nsITimerIface.TYPE_ONE_SHOT);
 }
 
@@ -654,7 +652,7 @@ function filteredNode(doc, URI, msg, isContent)
     notificationBox.removeAllNotifications(false); //remove open notification boxes
 
     blockedURI = URI;
-    let msg = (blacklist.advanced_customWarning)
+    msg = (blacklist.advanced_customWarning)
         ? blacklist.advanced_customWarningMsg + " " + msg
         : stringBundle.GetStringFromName("unavailablePage") + " " + msg;
     let button = [{
