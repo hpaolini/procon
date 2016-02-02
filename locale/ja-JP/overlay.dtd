@@ -1,0 +1,5 @@
+<!ENTITY procon.label "Procon Latte 設定">
+<!ENTITY addblacklistsite.label "サイトをブラックリストに追加">
+<!ENTITY addblacklistword.label "単語をブラックリストに追加">
+<!ENTITY addwhitelistsite.label "サイトをホワイトリストに追加">
+<!ENTITY addprofanitylistword.label "単語を悪口リストに追加">

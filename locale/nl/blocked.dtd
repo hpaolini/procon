@@ -1,0 +1,5 @@
+<!ENTITY title "Geblokkeerde">
+<!ENTITY options "Opties">
+<!ENTITY pageAllowTemp "Tijdelijk toestaan pagina">
+<!ENTITY domainAllowTemp "Tijdelijk toestaan domeinnaam">
+<!ENTITY domainAllowPerm "Domein aan witte lijst">

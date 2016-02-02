@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<!DOCTYPE window SYSTEM "chrome://procon/locale/overlay.dtd">
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <setting type="control">
+        <vbox>
+        <button id="showOptionsButton" label="&procon.label;"/>
+        </vbox>
+    </setting>
+</vbox>

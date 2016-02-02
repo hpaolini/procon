@@ -1,0 +1,5 @@
+<!ENTITY title "ブロックされたページ">
+<!ENTITY options "オプション">
+<!ENTITY pageAllowTemp "一時的にページを許可します">
+<!ENTITY domainAllowTemp "一時的にドメインを許可">
+<!ENTITY domainAllowPerm "ホワイトリストにドメインを追加します。">

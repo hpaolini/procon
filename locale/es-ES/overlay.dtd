@@ -1,0 +1,5 @@
+<!ENTITY procon.label "Preferncias de Procon Latte">
+<!ENTITY addblacklistsite.label "Añadir sitio a la lista negra">
+<!ENTITY addblacklistword.label "Añadir palabra a la lista negra">
+<!ENTITY addwhitelistsite.label "Añadir sitio a la lista blanca">
+<!ENTITY addprofanitylistword.label "Añadir palabra a la lista de palabrotas">

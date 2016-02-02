@@ -1,0 +1,5 @@
+<!ENTITY title "页面阻止">
+<!ENTITY options "选项">
+<!ENTITY pageAllowTemp "暂时允许页面">
+<!ENTITY domainAllowTemp "暂时允许域">
+<!ENTITY domainAllowPerm "添加域名白名单">

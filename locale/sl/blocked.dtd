@@ -1,0 +1,5 @@
+<!ENTITY title "Blokirano">
+<!ENTITY options "Možnosti">
+<!ENTITY pageAllowTemp "Začasno dovolijo stran">
+<!ENTITY domainAllowTemp "Se začasno dovoli domeno">
+<!ENTITY domainAllowPerm "Dodaj domeno na beli seznam">

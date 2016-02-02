@@ -1,27 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-<Description about="urn:mozilla:install-manifest">
-  <em:id>{9D6218B8-03C7-4b91-AA43-680B305DD35C}</em:id>
-  <em:type>2</em:type>
-  <em:name>Procon Latte Content Filter</em:name>
-  <em:version>3.3.3</em:version>
-  <em:creator>Hunter Paolini</em:creator>
-  <em:homepageURL>http://hpaolini.com</em:homepageURL>
-  <em:contributor>Javier Hernández (spanish translator)</em:contributor>
-  <em:contributor>BruceH (Chinese translator)</em:contributor>
-  <em:contributor>markh (Dutch translator)</em:contributor>
-  <em:contributor>Swiep (Dutch translator)</em:contributor>
-  <em:contributor>mar (Japanese translator)</em:contributor>
-  <em:contributor>barryoni (Hebrew translator)</em:contributor>
-  <em:contributor>sleepingsun2012 (Russian translator)</em:contributor>
-  <em:iconURL>chrome://procon/skin/images/security.png</em:iconURL>
-  <em:optionsURL>chrome://procon/content/preferences.xul</em:optionsURL>
-  <em:targetApplication>
-    <Description>
-      <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
-      <em:minVersion>34.0</em:minVersion>
-      <em:maxVersion>35.*</em:maxVersion>
+    <Description about="urn:mozilla:install-manifest">
+        <em:id>{9D6218B8-03C7-4b91-AA43-680B305DD35C}</em:id>
+        <em:type>2</em:type>
+        <em:localized>
+          <Description>
+            <em:locale>es-ES</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>Un filtro de contenido para bloquear sitios y censurar palabras soeces.</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>he</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>סינון אתרים שיש בהם תוכן לא הולם לילדים, כגון: ניבול פה וכד'.</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>it-IT</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>Un filtro famiglia per bloccare siti e censurare parolacce.</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>ja-JP</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>ペアレンタルコントロールのためにサイトのブロックと悪口の検閲を行うコンテンツフィルタです。</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>nl</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>Een inhoudsfilter om websites te blokkeren en obscene termen te censureren.</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>ru-RU</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>Фильтр содержание блокировать сайты и цензуре ненормативной лексики.</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>sl</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>Filter vsebine za blokiranje strani in cenzuriranje kletvic.</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>sv-SE</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>Ett innehållsfilter för att blockera webbplatser och censurera svordomar.</em:description>
+          </Description>
+        </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>zh-CN</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>内容过滤扩展(拦截站点及检查亵渎内容)</em:description>
+          </Description>
+        </em:localized>
+        <em:name>Procon Latte Content Filter</em:name>
+        <em:description>A content filter to block sites and censor profanity.</em:description>
+        <em:version>4.0.0</em:version>
+        <em:creator>Hunter Paolini</em:creator>
+        <em:homepageURL>http://hpaolini.com</em:homepageURL>
+        <em:translator>Javier Hernández (spanish translator)</em:translator>
+        <em:translator>BruceH (Chinese translator)</em:translator>
+        <em:translator>markh (Dutch translator)</em:translator>
+        <em:translator>Swiep (Dutch translator)</em:translator>
+        <em:translator>mar (Japanese translator)</em:translator>
+        <em:translator>barryoni (Hebrew translator)</em:translator>
+        <em:translator>sleepingsun2012 (Russian translator)</em:translator>
+        <em:translator>Klofutar (Slovenian translator)</em:translator>
+        <em:iconURL>chrome://procon/skin/images/security.png</em:iconURL>
+        <em:bootstrap>true</em:bootstrap>
+        <em:optionsType>2</em:optionsType>
+        <em:optionsURL>chrome://procon/content/options.xul</em:optionsURL>
+        <em:targetApplication>
+            <Description>
+                <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Firefox -->
+                <em:minVersion>38.0</em:minVersion>
+                <em:maxVersion>46.0</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+        <em:targetApplication>
+            <Description>
+                <em:id>{aa3c5121-dab2-40e2-81ca-7ea25febc110}</em:id> <!-- Firefox for Android -->
+                <em:minVersion>24.0</em:minVersion>
+                <em:maxVersion>42.*</em:maxVersion>
+            </Description>
+        </em:targetApplication>
     </Description>
-  </em:targetApplication>
-</Description>
 </RDF>

@@ -1,0 +1,5 @@
+<!ENTITY title "Blocked Page">
+<!ENTITY options "Options">
+<!ENTITY pageAllowTemp "Temporarily allow page">
+<!ENTITY domainAllowTemp "Temporarily allow domain">
+<!ENTITY domainAllowPerm "Add domain to whitelist">

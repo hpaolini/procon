@@ -1,0 +1,5 @@
+<!ENTITY title "Заблокированные страницу">
+<!ENTITY options "Опции">
+<!ENTITY pageAllowTemp "Временно разрешить страницу">
+<!ENTITY domainAllowTemp "Временно разрешить домен">
+<!ENTITY domainAllowPerm "Добавить домен в белый список">

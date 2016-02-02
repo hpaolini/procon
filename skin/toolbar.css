@@ -1,0 +1,9 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+@-moz-document url("chrome://browser/content/browser.xul") {
+    #procon-button {
+        list-style-image: url("chrome://procon/skin/images/security_small.png");
+    }
+    #procon-button[cui-areatype="menu-panel"], toolbarpaletteitem[place="palette"] > #procon-button {
+        list-style-image: url("chrome://procon/skin/images/security.png");
+    }
+}

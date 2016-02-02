@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "chrome://procon/locale/blocked.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>&title;</title>
+        <link rel="shortcut icon" type="jpg/png" href="chrome://procon/skin/images/security_small.png"/>
+        <link rel="stylesheet" type="text/css" href="chrome://procon/skin/options.css"/>
+    </head>
+    <body>
+        <div id="blocked">
+            <img src="chrome://procon/skin/images/blocked.png"/>
+            <p id="msg"></p>
+            <ul class="buttons">
+                <li><a href="javascript:void(0)" onclick="blocked.allowPage()">&pageAllowTemp;</a></li>
+                <li><a href="javascript:void(0)" onclick="blocked.allowDomain()">&domainAllowTemp;</a></li>
+                <li><a href="javascript:void(0)" onclick="blocked.addWhitelistSite()">&domainAllowPerm;</a></li>
+                <li><a href="chrome://procon/content/options.xhtml">&options;</a></li>
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript" src="chrome://procon/content/blocked.js"></script>
+</html>

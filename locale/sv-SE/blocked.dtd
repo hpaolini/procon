@@ -1,0 +1,5 @@
+<!ENTITY title "Sidan Blockerad">
+<!ENTITY options "Inställningar">
+<!ENTITY pageAllowTemp "Tillåter tillfälligt sida">
+<!ENTITY domainAllowTemp "Tillåter tillfälligt domän">
+<!ENTITY domainAllowPerm "Lägg domän till vita listan">

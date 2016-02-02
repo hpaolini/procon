@@ -1,0 +1,5 @@
+<!ENTITY procon.label "Procon Latte 首选项">
+<!ENTITY addblacklistsite.label "添加站点到黑名单">
+<!ENTITY addblacklistword.label "添加词语到黑名单">
+<!ENTITY addwhitelistsite.label "添加站点到白名单">
+<!ENTITY addprofanitylistword.label "添加词语到亵渎名单">

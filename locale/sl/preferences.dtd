@@ -1,0 +1,42 @@
+<!ENTITY prefwindow.title "Možnosti filtra vsebine Procon Latte">
+<!ENTITY donate.label "Darujte!">
+<!ENTITY settings.label "Nastavitve">
+<!ENTITY import.label "Uvozi nastavitve">
+<!ENTITY export.label "Izvozi nastavitve">
+<!ENTITY restore.label "Obnovi privzete nastavitve">
+<!ENTITY mainPane.title "Splošno">
+<!ENTITY pass.description "Zelo je priporočljivo, da nastavite geslo za zaščito dodatka pred onemogočanjem.">
+<!ENTITY passset.label "Nastavi geslo">
+<!ENTITY passremove.label "Odstrani geslo">
+<!ENTITY contentfilter.label "Filter vsebine">
+<!ENTITY blacklist.label "Omogoči črni seznam">
+<!ENTITY blocksites.label "Blokiraj strani">
+<!ENTITY blockwords.label "Blokiraj besede">
+<!ENTITY whitelist.label "Omogoči beli seznam">
+<!ENTITY profanityfilter.label "Filter kletvic">
+<!ENTITY profanitylist.label "Omogoči seznam kletvic">
+<!ENTITY subscriptions.label "Navedi naročnine">
+<!ENTITY subscriptionslist.label "Omogoči naročnine">
+<!ENTITY blacklistPane.title "Črni seznam">
+<!ENTITY blockedsites.label "Blokirane strani">
+<!ENTITY blockedwords.label "Blokirane besede">
+<!ENTITY showadvanced.label "Prikaži dodatne nastavitve">
+<!ENTITY advanced.label "Napredno">
+<!ENTITY advanced.stopall.label "Omeji internetni dostop na beli seznam odobrenih strani">
+<!ENTITY advanced.renderdelay.label "Izriši strani samo po pregledu">
+<!ENTITY advanced.explainblocked.label "Razloži, zakaj je bila stran blokirana">
+<!ENTITY advanced.customwarning.label "Prikaži opozorilo po meri">
+<!ENTITY advanced.redirect.label "Preusmeri blokirane strani">
+<!ENTITY whitelistPane.title "Beli seznam">
+<!ENTITY profanitylistPane.title "Seznam kletvic">
+<!ENTITY placeholder.description "Naslednja ključna beseda se uporablja kot ogrado za cenzurirane besede.">
+<!ENTITY subscriptionsPane.title "Naročnine">
+<!ENTITY updatesubscriptions.label "Posodobi naročnine">
+<!ENTITY onekeywordperline.label "(ena ključna beseda na vrstico)">
+<!-- Note: the placeholder &onekeywordperline.label; will be replaced by its value (see above)-->
+<!ENTITY blockedsites.description "Naslednje ključne besede zavrnejo dostop do spletnih strani z ujemajočimi se naslovi &onekeywordperline.label;.">
+<!ENTITY blockedwords.description "Naslednje ključne besede zavrnejo dostop do spletnih strani z ujemajočo se vsebino &onekeywordperline.label;.">
+<!ENTITY whitelist.description "Naslednje ključne besede odobrijo dostop do spletnih strani z ujemajočimi se naslovi &onekeywordperline.label;.">
+<!ENTITY profanitylist.description "Naslednje ključne besede so cenzurirane na vseh spletnih straneh &onekeywordperline.label;.">
+<!ENTITY subscriptions.description "Naročite se na brezplačne sezname filtrov. Naročnine se bodo samodejno posodobile vsakih 72 ur. En vnos na vrstico. Neveljavni naslovi bodo ignorira.">
+<!ENTITY apply.label "Shrani nastavitve">

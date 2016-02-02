@@ -1,0 +1,5 @@
+<!ENTITY title "Página Bloqueada">
+<!ENTITY options "Opciones">
+<!ENTITY pageAllowTemp "Permitir temporalmente la página">
+<!ENTITY domainAllowTemp "Permitir temporalmente el dominio">
+<!ENTITY domainAllowPerm "Añadir dominio a la lista blanca">

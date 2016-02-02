@@ -1,0 +1,112 @@
+<!DOCTYPE html SYSTEM "chrome://procon/locale/preferences.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <title>&prefwindow.title;</title>
+        <link rel="shortcut icon" tpe="jpg/png" href="chrome://procon/skin/images/security_small.png"/>
+        <link rel="stylesheet" tpe="text/css" href="chrome://procon/skin/options.css"/>
+    </head>
+    <body class="hidden">
+        <div id="settings">
+            <div id="sidebar">
+                <ul class="buttons">
+                    <li class="clicked"><a href="javascript:void(0)" id="general-anchor" onclick="ui.showThis('general', this)" class="clicked">&mainPane.title;</a></li>
+                    <li><a href="javascript:void(0)" id="blacklist-anchor" onclick="ui.showThis('blacklist', this)">&blacklistPane.title;</a></li>
+                    <li><a href="javascript:void(0)" id="whitelist-anchor" onclick="ui.showThis('whitelist', this)">&whitelistPane.title;</a></li>
+                    <li><a href="javascript:void(0)" id="profanitylist-anchor" onclick="ui.showThis('profanitylist', this)">&profanitylistPane.title;</a></li>
+                    <li><a href="javascript:void(0)" id="subscriptions-anchor" onclick="ui.showThis('subscriptions', this)">&subscriptionsPane.title;</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <div id="general">
+                    <div class="info">
+                        <p>&pass.description;</p>
+                        <a href="javascript:void(0)" id="passset-anchor" onclick="accessPass.set()">&passset.label;</a>
+                        <a href="javascript:void(0)" id="passremove-anchor" onclick="accessPass.remove()">&passremove.label;</a>
+                    </div>
+                    <br/>
+                    <strong>&contentfilter.label;</strong>
+                    <ul>
+                        <li><input type="checkbox" id="blacklist.enabled" onclick="ui.toggleBoxes()"/><label for="blacklist.enabled">&blacklist.label;</label></li>
+                        <ul>
+                            <li><input type="checkbox" id="blacklist.sites.enabled"/><label for="blacklist.sites.enabled">&blocksites.label;</label></li>
+                            <li><input type="checkbox" id="blacklist.words.enabled"/><label for="blacklist.words.enabled">&blockwords.label;</label></li>
+                        </ul>
+                        <li><input type="checkbox" id="whitelist.enabled"/><label for="whitelist.enabled">&whitelist.label;</label></li>
+                    </ul>
+                    <strong>&profanityfilter.label;</strong>
+                    <ul>
+                        <li><input type="checkbox" id="profanitylist.enabled"/><label for="profanitylist.enabled">&profanitylist.label;</label></li>
+                    </ul>
+                    <strong>&subscriptions.label;</strong>
+                    <ul>
+                        <li><input type="checkbox" id="subscriptions.enabled"/><label for="subscriptions.enabled">&subscriptionslist.label;</label></li>
+                    </ul>
+                    <strong>&settings.label;</strong>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="io.importFile()">&import.label;</a></li>
+                        <li><a href="javascript:void(0)" onclick="io.exportFile()">&export.label;</a></li>
+                        <li><a href="javascript:void(0)" onclick="io.reset()">&restore.label;</a></li>
+                    </ul>
+                    <hr/>
+                    <a href="javascript:void(0)" onclick="ui.showAdvancedSettings(this)">&showadvanced.label;…</a>
+                    <div id="advanced" class="hidden">
+                        <strong>&advanced.label;</strong>
+                        <ul>
+                            <li><input type="checkbox" id="blacklist.advanced.limitNetAccess"/><label for="blacklist.advanced.limitNetAccess">&advanced.stopall.label;</label></li>
+                            <li><input type="checkbox" id="blacklist.advanced.renderDelay"/><label for="blacklist.advanced.renderDelay">&advanced.renderdelay.label;</label></li>
+                            <li><input type="checkbox" id="blacklist.advanced.showDetails"/><label for="blacklist.advanced.showDetails">&advanced.explainblocked.label;</label></li>
+                            <li><input type="checkbox" id="blacklist.advanced.customWarning" onclick="ui.toggleBoxes()"/><label for="blacklist.advanced.customWarning">&advanced.customwarning.label;</label></li>
+                            <li><input type="text" id="blacklist.advanced.customWarningMsg"/></li>
+                            <li><input type="checkbox" id="blacklist.advanced.redirect" onclick="ui.toggleBoxes()"/><label for="blacklist.advanced.redirect">&advanced.redirect.label;</label></li>
+                            <li><input type="text" id="blacklist.advanced.redirectURL"/></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="blacklist" class="hidden">
+                    <div class="category">
+                        <strong>&blockedsites.label;</strong>
+                        <p>&blockedsites.description;</p>
+                        <textarea rows="15" id="blacklist.sites"></textarea>
+                    </div>
+                    <br/>
+                    <div class="category">
+                        <strong>&blockedwords.label;</strong>
+                        <p>&blockedwords.description;</p>
+                        <textarea rows="15" id="blacklist.words"></textarea>
+                    </div>
+                </div>
+                <div id="whitelist" class="hidden">
+                    <div class="category">
+                        <p>&whitelist.description;</p>
+                        <textarea rows="15" id="whitelist.sites"></textarea>
+                    </div>
+                </div>
+                <div id="profanitylist" class="hidden">
+                    <div class="category">
+                        <p>&placeholder.description;</p>
+                        <input type="text" id="profanitylist.placeholder"/>
+                        <p>&profanitylist.description;</p>
+                        <textarea rows="15" id="profanitylist.words"></textarea>
+                    </div>
+                </div>
+                <div id="subscriptions" class="hidden">
+                    <div class="category">
+                        <p>&subscriptions.description;</p>
+                        <textarea rows="15" id="subscriptions.urls"></textarea>
+                        <ul class="buttons">
+                            <li><a href="javascript:void(0)" onclick="updateSubscriptions()">&updatesubscriptions.label;</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="buttons">
+                    <li class="yellow disabled"><a id="apply-anchor" href="javascript:void(0)" onclick="save(this)">&apply.label;…</a></li>
+                </ul>
+                <ul id="github">
+                    <li><img src="chrome://procon/skin/images/GitHub-Mark-32px.png" height="20" width="20" align="absmiddle"></img><a tooltip="Follow @hpaolini on GitHub" href="https://github.com/hpaolini" class="github-button">Follow @hpaolini</a>·<a href="http://hpaolini.com/donate/">&donate.label;</a></li>
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript" src="chrome://procon/content/options.js"></script>
+    </body>
+</html>

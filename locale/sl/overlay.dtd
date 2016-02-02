@@ -1,0 +1,5 @@
+<!ENTITY procon.label "Možnosti Procon Latte">
+<!ENTITY addblacklistsite.label "Dodaj stran na črni seznam">
+<!ENTITY addblacklistword.label "Dodaj besedo na črni seznam">
+<!ENTITY addwhitelistsite.label "Dodaj stran na beli seznam">
+<!ENTITY addprofanitylistword.label "Dodaj besedo na seznam kletvic">
