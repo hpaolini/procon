@@ -2,7 +2,7 @@ pref("extensions.procon.currentVersion", "0.0");
 pref("extensions.procon.blacklist.enabled", true);
 pref("extensions.procon.blacklist.sites.enabled", true);
 pref("extensions.procon.blacklist.words.enabled", true);
-pref("extensions.procon.blacklist.sites", "xxx\nporn\nplayboy\nxhamster\ntwerk\njiggle\nbutt\nnsfw\ntblop\nxvideo\nredtube\ngonewild\nbeastiality\nmilf\nfuck\npussy\nblowjob\nhardcore\ncumshot\nhentai");
+pref("extensions.procon.blacklist.sites", "xxx\nporn\nplayboy\nxhamster\ntwerk\njiggle\nnsfw\ntblop\nxvideo\nredtube\ngonewild\nbeastiality\nmilf\nfuck\npussy\nblowjob\nhardcore\ncumshot\nhentai");
 pref("extensions.procon.blacklist.words", "18 U.S.C\n18 USC 2257\nexplicit photos\namateur photos\namateur videos\nadult material\nxxx video\nxxx-rated\nsexually explicit\nadult only\nadults only\nsexually explicit material\nhentai\nadult web\nerotic\nfree sex\nadult movie\nadults movie\nblow job\nblowjob\ncock suck\nsexiest videos\nporndirectory\nsoftcore\nsoft-core\nsoftporn\nsoft-porn\nat least 18 years\n18.*2257\n2257.*information\n2257.*notice\n2257.*statement\nusc2257\nanime.*xxx");
 pref("extensions.procon.blacklist.advanced.renderDelay", false);
 pref("extensions.procon.blacklist.advanced.redirect", false);
