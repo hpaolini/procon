@@ -86,5 +86,5 @@
     }
 
     preferences.setPrefByType(branch + "currentVersion", currentVersion);
-    Services.ppmm.sendAsyncMessage(host + "filterUpdate", {fn: "updatePrefs"});
+    Services.cpmm.sendAsyncMessage(host + "filterUpdate", {fn: "updatePrefs"});
 }());
