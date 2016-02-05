@@ -215,18 +215,37 @@ function settings (action) {
 
 const accessPass = {
     set: function () {
-        var pass1 = prompt(stringBundle.GetStringFromName("passwordPrompt"), ""),
-            pass2,
+
+        var pass1 = {value: ""},
+            pass2 = {value: ""},
+            promptResult,
             context = {};
 
-        if (pass1 !== null && pass1.length > 0) {
-            pass2 = prompt(stringBundle.GetStringFromName("passwordPromptAgain"), "");
-            if (pass1 === pass2) {
+        promptResult = Services.prompt.promptPassword(null,
+            stringBundle.GetStringFromName("passwordPromptTitle"),
+            stringBundle.GetStringFromName("passwordPrompt"),
+            pass1,
+            null,
+            {value: false}); // need to pass an object for the checkbox even if hidden
+
+        if (pass1.value.length > 0) {
+            promptResult = Services.prompt.promptPassword(null,
+                stringBundle.GetStringFromName("passwordPromptTitle"),
+                stringBundle.GetStringFromName("passwordPromptAgain"),
+                pass2,
+                null,
+                {value: false}); // need to pass an object for the checkbox even if hidden
+
+            if (pass1.value === pass2.value) {
                 Services.scriptloader.loadSubScript(contentPath + "md5.js", context, "UTF-8");
-                preferences.setPrefByType(branch + "general.password", context.hex_md5(pass1));
-                alert(stringBundle.GetStringFromName("passwordPromptSuccess"));
+                preferences.setPrefByType(branch + "general.password", context.hex_md5(pass1.value));
+                Services.prompt.alert(null,
+                    stringBundle.GetStringFromName("passwordPromptTitle"),
+                    stringBundle.GetStringFromName("passwordPromptSuccess"));
             } else {
-                alert(stringBundle.GetStringFromName("passwordPromptFailure"));
+                Services.prompt.alert(null,
+                    stringBundle.GetStringFromName("passwordPromptTitle"),
+                    stringBundle.GetStringFromName("passwordPromptFailure"));
             }
         }
         ui.updatePasswordButtons();
@@ -234,7 +253,9 @@ const accessPass = {
 
     remove: function () {
         preferences.clearPref(branch + "general.password");
-        alert(stringBundle.GetStringFromName("passwordRemoved"));
+        Services.prompt.alert(null,
+            stringBundle.GetStringFromName("passwordPromptTitle"),
+            stringBundle.GetStringFromName("passwordRemoved"));
         ui.updatePasswordButtons();
     }
 };
@@ -412,7 +433,9 @@ const io = {
 
                 save();
                 settings("load");
-                alert(stringBundle.GetStringFromName("importSuccess"));
+                Services.prompt.alert(null,
+                    null,
+                    stringBundle.GetStringFromName("importSuccess"));
                 return true;
             });
         }
@@ -420,7 +443,9 @@ const io = {
     },
 
     reset: function () {
-        var result = confirm(stringBundle.GetStringFromName("restorePrompt"));
+        var result = Services.prompt.confirm(null,
+            null,
+            stringBundle.GetStringFromName("restorePrompt"));
 
         if (!result) {
             return;
@@ -430,7 +455,9 @@ const io = {
         preferences.setDefaultPref();
         save();
         settings("load");
-        alert(stringBundle.GetStringFromName("restorePromptSuccess"));
+        Services.prompt.alert(null,
+            null,
+            stringBundle.GetStringFromName("restorePromptSuccess"));
     }
 };
 

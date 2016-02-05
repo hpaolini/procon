@@ -15,7 +15,9 @@ var blocked = (function () {
 
     function sendMessage (msg, data, callback) {
         if (!Services.scriptloader.loadSubScript(contentPath + "authenticate.js", {}, "UTF-8")) {
-            alert(stringBundle.GetStringFromName("passwordPromptWrong"));
+            Services.prompt.alert(null,
+                stringBundle.GetStringFromName("passwordPromptTitle"),
+                stringBundle.GetStringFromName("passwordPromptWrong"));
             return;
         }
 
@@ -45,7 +47,9 @@ var blocked = (function () {
                 value = URI.host + "\n" + preferences.getPrefByType(branch + "whitelist.sites");
                 preferences.setPrefByType(branch + "whitelist.sites", value);
                 if (!preferences.getPrefByType(branch + "whitelist.enabled")) {
-                    alert(stringBundle.GetStringFromName("whitelistDisabled"));
+                    Services.prompt.alert(null,
+                        null,
+                        stringBundle.GetStringFromName("whitelistDisabled"));
                 }
             };
             sendMessage("filterUpdate", {fn: "updatePrefs"}, callback);

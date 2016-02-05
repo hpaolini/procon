@@ -12,20 +12,31 @@
     const {Services} = Cu.import("resource://gre/modules/Services.jsm", {});
 
     var stringBundle = Services.strings.createBundle("chrome://procon/locale/overlay.properties?" + Math.random()), // Randomize URI to work around bug 719376
+        input = {value: ""},
         preferences = {},
         context = {},
-        input,
+        promptResult,
         pass;
 
     Services.scriptloader.loadSubScript(contentPath + "preferences.js", preferences, "UTF-8");
 
     if (preferences.hasPref(branch + "general.password")) {
 
-        input = window.prompt(stringBundle.GetStringFromName("passwordPrompt"), "");
+        promptResult = Services.prompt.promptPassword(null,
+            stringBundle.GetStringFromName("passwordPromptTitle"),
+            stringBundle.GetStringFromName("passwordPrompt"),
+            input,
+            null,
+            {value: false}); // need to pass an object for the checkbox even if hidden
+
+        if (!promptResult) {
+            return false;
+        }
+
         pass = preferences.getPrefByType(branch + "general.password");
         Services.scriptloader.loadSubScript(contentPath + "md5.js", context, "UTF-8");
 
-        if (input != null && context.hex_md5(input) == pass) {
+        if (input.value.length > 0 && context.hex_md5(input.value) == pass) {
             return true; 
         } else {
             return false;

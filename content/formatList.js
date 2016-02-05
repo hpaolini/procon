@@ -9,9 +9,6 @@ this.TYPE = {
     WORDS : 1
 };
 
-/**
- * Prepare strings containing unicode characters
- */
 function format (str, type) {
     var list = "",
         i,
