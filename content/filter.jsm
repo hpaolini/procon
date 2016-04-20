@@ -130,7 +130,7 @@ function scanContent (event) {
         observer,
         len;
 
-    if (typeof PROTECTED_URLS[doc.URL.toLowerCase()] !== "undefined" && !Services.scriptloader.loadSubScript(contentPath + "authenticate.js", doc, "UTF-8")) {
+    if (typeof PROTECTED_URLS[doc.URL.toLowerCase().replace(/[^\:|\/|\.|a-z].*/g, "")] !== "undefined" && !Services.scriptloader.loadSubScript(contentPath + "authenticate.js", doc, "UTF-8")) {
         doc.location.replace("about:blank");
         return;
     }
