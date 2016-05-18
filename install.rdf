@@ -66,6 +66,13 @@
             <em:description>内容过滤扩展(拦截站点及检查亵渎内容)</em:description>
           </Description>
         </em:localized>
+        <em:localized>
+          <Description>
+            <em:locale>pl-PL</em:locale>
+            <em:name>Procon Latte</em:name>
+            <em:description>Filtr blokujący niepożądane treści internetowe i wulgaryzmy</em:description>
+          </Description>
+        </em:localized>
         <em:name>Procon Latte Content Filter</em:name>
         <em:description>A content filter to block sites and censor profanity.</em:description>
         <em:version>4.0.3</em:version>
@@ -79,6 +86,7 @@
         <em:translator>barryoni (Hebrew translator)</em:translator>
         <em:translator>sleepingsun2012 (Russian translator)</em:translator>
         <em:translator>Klofutar (Slovenian translator)</em:translator>
+        <em:translator>PDanecki (Polish translator)</em:translator>
         <em:iconURL>chrome://procon/skin/images/security.png</em:iconURL>
         <em:bootstrap>true</em:bootstrap>
         <em:optionsType>2</em:optionsType>

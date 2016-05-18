@@ -1,0 +1,42 @@
+<!ENTITY prefwindow.title "Preferencje Procon Latte Content Filter">
+<!ENTITY donate.label "Wspomóż!">
+<!ENTITY settings.label "Ustawienia">
+<!ENTITY import.label "Wczytaj ustawienia">
+<!ENTITY export.label "Zapisz ustawienia">
+<!ENTITY restore.label "Przywróć ustawienia domyślne">
+<!ENTITY mainPane.title "Ogólne">
+<!ENTITY pass.description "Aby uniemożliwić wyłączenie dodatku, zalecane jest ustawienie hasła dostępu.">
+<!ENTITY passset.label "Ustaw hasło">
+<!ENTITY passremove.label "Usuń hasło">
+<!ENTITY contentfilter.label "Filtr zawartości">
+<!ENTITY blacklist.label "Włącz listę blokowania">
+<!ENTITY blocksites.label "Zablokowane strony">
+<!ENTITY blockwords.label "Zablokowane słowa">
+<!ENTITY whitelist.label "Włącz listę zaufanych domen">
+<!ENTITY profanityfilter.label "Filtr wulgaryzmów">
+<!ENTITY profanitylist.label "Włącz filtr wulgaryzmów">
+<!ENTITY subscriptions.label "Subskrypcje list">
+<!ENTITY subscriptionslist.label "Włącz subskrypcje">
+<!ENTITY blacklistPane.title "Lista blokowania">
+<!ENTITY blockedsites.label "Blokowane strony">
+<!ENTITY blockedwords.label "Blokowane słowa">
+<!ENTITY showadvanced.label "Pokaż ustawienia zaawansowane">
+<!ENTITY advanced.label "Zaawansowane">
+<!ENTITY advanced.stopall.label "Ogranicz dostęp tylko do listy zaufanych stron">
+<!ENTITY advanced.renderdelay.label "Wyświetl strony dopiero po sprawdzeniu">
+<!ENTITY advanced.explainblocked.label "Podaj powód blokowania strony">
+<!ENTITY advanced.customwarning.label "Wyświetl własne ostrzeżenie">
+<!ENTITY advanced.redirect.label "Przekieruj na ten adres po zablokowaniu">
+<!ENTITY whitelistPane.title "Lista zaufanych domen">
+<!ENTITY profanitylistPane.title "Lista wulgaryzmów">
+<!ENTITY placeholder.description "Ocenzurowane słowa zostaną zastąpione przez te znaki.">
+<!ENTITY subscriptionsPane.title "Subskrypcje">
+<!ENTITY updatesubscriptions.label "Zaktualizuj subskrypcje">
+<!ENTITY onekeywordperline.label "(w każdej lini jedno słowo)">
+<!-- Note: the placeholder &onekeywordperline.label; will be replaced by its value (see above)-->
+<!ENTITY blockedsites.description "Dostęp do strony z poniższymi słowami w adresie jest zablokowany &onekeywordperline.label;.">
+<!ENTITY blockedwords.description "Dostęp do strony z poniższymi słowami w treści jest zablokowany &onekeywordperline.label;.">
+<!ENTITY whitelist.description "Dostęp do strony z poniższymi słowami w adresie jest dozwolony &onekeywordperline.label;.">
+<!ENTITY profanitylist.description "Poniższe słowa zostaną ocenzurowane na wszystkich stronach &onekeywordperline.label;.">
+<!ENTITY subscriptions.description "Subskrypcje będą aktualizowane co 72 godziny. W każdej lini jeden wpis. Błędne adresy zostaną zignorowane.">
+<!ENTITY apply.label "Zastosuj zmiany">

@@ -1,0 +1,5 @@
+<!ENTITY procon.label "Procon Latte Preferencje">
+<!ENTITY addblacklistsite.label "Dodaj stronę do listy blokowanych">
+<!ENTITY addblacklistword.label "Dodaj słowo do listy blokowanych">
+<!ENTITY addwhitelistsite.label "Dodaj stronę do listy zaufanych">
+<!ENTITY addprofanitylistword.label "Dodaj słowo do listy wulgaryzmów">
