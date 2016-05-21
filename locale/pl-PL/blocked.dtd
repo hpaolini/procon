@@ -1,0 +1,5 @@
+<!ENTITY title "Strona zablokowana">
+<!ENTITY options "Opcje">
+<!ENTITY pageAllowTemp "Tymczasowo zezwól na tę stronę">
+<!ENTITY domainAllowTemp "Tymczasowo zezwól na tę domenę">
+<!ENTITY domainAllowPerm "Dodaj domenę do listy zaufanych domen">
