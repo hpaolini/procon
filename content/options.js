@@ -87,7 +87,10 @@ function b64EncodeUnicode (str) {
 function load () {
     window.removeEventListener("load", load);
 
-    if (Services.scriptloader.loadSubScript(contentPath + "authenticate.js", {}, "UTF-8")) {
+    var authenticate = {};
+    Services.scriptloader.loadSubScript(contentPath + "authenticate.js", authenticate, "UTF-8");
+
+    if (authenticate.isAuthenticated()) {
         settings("load");
         document.body.className = "";
         window.addEventListener("unload", unload, false);
@@ -261,7 +264,9 @@ const accessPass = {
 };
 
 function updateSubscriptions () {
-    Services.scriptloader.loadSubScript(contentPath + "subscriptions.js", {}, "UTF-8");
+    var subscriptions = {};
+    Services.scriptloader.loadSubScript(contentPath + "subscriptions.js", subscriptions, "UTF-8");
+    subscriptions.load();
 }
 
 const io = {

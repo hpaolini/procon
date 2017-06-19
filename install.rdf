@@ -75,7 +75,7 @@
         </em:localized>
         <em:name>Procon Latte Content Filter</em:name>
         <em:description>A content filter to block sites and censor profanity.</em:description>
-        <em:version>4.0.5</em:version>
+        <em:version>4.2.0</em:version>
         <em:creator>Hunter Paolini</em:creator>
         <em:homepageURL>http://hpaolini.com</em:homepageURL>
         <em:translator>Javier Hernández (spanish translator)</em:translator>

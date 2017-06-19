@@ -89,7 +89,8 @@ var ui = (function () {
 
     WindowListener = {
         onOpenWindow: function (xulWindow) {
-            var window = xulWindow.QueryInterface(Ci.nsIInterfaceRequestor).getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow);
+            //var window = xulWindow.QueryInterface(Ci.nsIInterfaceRequestor).getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow);
+            var window = xulWindow.QueryInterface(Ci.nsIInterfaceRequestor).getInterface(Ci.nsIDOMWindow);
             function onWindowLoad () {
                 window.removeEventListener("load", onWindowLoad);
                 if (window.document.documentElement.getAttribute("windowtype") == "navigator:browser") {
@@ -301,7 +302,9 @@ function startup (data, reason) {
         tryMax = 30000,
         timer = Cc['@mozilla.org/timer;1'].createInstance(Ci.nsITimer),
         checkLater,
-        timerObserver;
+        timerObserver,
+        housekeep = {},
+        subscriptions = {};
 
     Services.scriptloader.loadSubScript(contentPath + "preferences.js", preferences, "UTF-8");
 
@@ -311,7 +314,8 @@ function startup (data, reason) {
 
         // clean deprecated prefs from legacy versions
         if (preferences.getPrefByType(branch + "currentVersion") < "3.0") {
-            Services.scriptloader.loadSubScript(contentPath + "housekeep.js", {}, "UTF-8");
+            Services.scriptloader.loadSubScript(contentPath + "housekeep.js", housekeep, "UTF-8");
+            housekeep.load();
         }
 
         preferences.setPrefByType(branch + "firstRun", false);
@@ -323,7 +327,8 @@ function startup (data, reason) {
         lastUpdateTime = preferences.getPrefByType(branch + "subscriptions.lastUpdateTime");
 
         if (((time - lastUpdateTime) / 3600) > 72) {
-            Services.scriptloader.loadSubScript(contentPath + "subscriptions.js", {}, "UTF-8");
+            Services.scriptloader.loadSubScript(contentPath + "subscriptions.js", subscriptions, "UTF-8");
+            subscriptions.load();
         }
     }
 

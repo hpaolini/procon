@@ -2,9 +2,9 @@
   Copyright (c) 2016 Hunter Paolini.  All Rights Reserved.
   -----------------------------------------------------*/
 
-(function () {
-    "use strict";
+"use strict";
 
+function isAuthenticated () {
     const contentPath = "chrome://procon/content/",
           branch = "extensions.procon.",
           Cu = Components.utils;
@@ -44,4 +44,4 @@
     }
 
     return true; 
-}());
+}

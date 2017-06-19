@@ -2,10 +2,10 @@
   Copyright (c) 2016 Hunter Paolini.  All Rights Reserved.
   -----------------------------------------------------*/
 
-(function () {
-    "use strict";
+"use strict";
 
-    const currentVersion = "4.0",
+function load () {
+    const currentVersion = "4.2",
           contentPath = "chrome://procon/content/",
           branch = "extensions.procon.",
           oldBranch = "procon.",
@@ -87,4 +87,4 @@
 
     preferences.setPrefByType(branch + "currentVersion", currentVersion);
     Services.cpmm.sendAsyncMessage(host + "filterUpdate", {fn: "updatePrefs"});
-}());
+}

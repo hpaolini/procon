@@ -128,11 +128,15 @@ function scanContent (event) {
         cf,
         MutationObserver,
         observer,
-        len;
+        len,
+        authenticate = {};
 
-    if (typeof PROTECTED_URLS[doc.URL.toLowerCase().replace(/[^\:|\/|\.|a-z].*/g, "")] !== "undefined" && !Services.scriptloader.loadSubScript(contentPath + "authenticate.js", doc, "UTF-8")) {
-        doc.location.replace("about:blank");
-        return;
+    if (typeof PROTECTED_URLS[doc.URL.toLowerCase().replace(/[^\:|\/|\.|a-z].*/g, "")] !== "undefined") {
+        Services.scriptloader.loadSubScript(contentPath + "authenticate.js", authenticate, "UTF-8");
+        if (!authenticate.isAuthenticated()) {
+            doc.location.replace("about:blank");
+            return;
+        }
     }
 
     body = doc.body;

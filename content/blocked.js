@@ -14,7 +14,10 @@ var blocked = (function () {
         URI;
 
     function sendMessage (msg, data, callback) {
-        if (!Services.scriptloader.loadSubScript(contentPath + "authenticate.js", {}, "UTF-8")) {
+        var authenticate = {};
+        Services.scriptloader.loadSubScript(contentPath + "authenticate.js", authenticate, "UTF-8");
+
+        if (!authenticate.isAuthenticated()) {
             Services.prompt.alert(null,
                 stringBundle.GetStringFromName("passwordPromptTitle"),
                 stringBundle.GetStringFromName("passwordPromptWrong"));
